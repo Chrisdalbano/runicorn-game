@@ -1,0 +1,20 @@
+{
+  "game": "j970hj6zbxbbfjqw6b5bfyb9vs8e3sag",
+  "stats": {
+    "BEST_CHROMA": "✓ Created stat \"Best Chroma\" (id: nh7ex88jpf8w03yrkpgkgh7hen8e25vs, identifier: BEST_CHROMA)",
+    "MOST_PURIFIED": "✓ Created stat \"Most purified in one run\" (id: nh7cqdecjwkjdm1chg6npe1jdh8e2888, identifier: MOST_PURIFIED)",
+    "MOST_LOOPS": "✓ Created stat \"Most loops in one run\" (id: nh7fztr0xvn3vymb5vbdbsv9358e3wca, identifier: MOST_LOOPS)",
+    "FURTHEST_DISTRICT": "✓ Created stat \"Furthest district\" (id: nh7eezwxhpa6g4z7eke0f0f29x8e3ekm, identifier: FURTHEST_DISTRICT)",
+    "WORLD_SAVED": "✓ Created stat \"World restored\" (id: nh71052hjf47cx1z04f71kj3jh8e2p2h, identifier: WORLD_SAVED)"
+  },
+  "achievements": {
+    "FIRST_LOOP": "✓ Created achievement \"Color Outside the Grave\" (id: md77z8csqhdx9ype32x7071x758e2rkh, identifier: FIRST_LOOP)",
+    "LOOP_ARTIST": "✓ Created achievement \"Loop Artist\" (id: md71a6qdgvbyrm500xkx2y6j118e222y, identifier: LOOP_ARTIST)",
+    "FIRST_PURIFICATION": "✓ Created achievement \"Still Magical\" (id: md77t1cwcb1f5v9h6p30rv0zax8e27bj, identifier: FIRST_PURIFICATION)",
+    "HERD_CONTROL": "✓ Created achievement \"Herd Control\" (id: md7ek8g8x4xf670stmthf2rvwn8e3b0h, identifier: HERD_CONTROL)",
+    "CHROMA_OVERDRIVE": "✓ Created achievement \"Chroma Overdrive\" (id: md73sx7a90xxnsyfyrrzdda1ks8e2026, identifier: CHROMA_OVERDRIVE)",
+    "DISTRICT_RUNNER": "✓ Created achievement \"The Last of Herd\" (id: md79b02kgw5z9xjzpd2f6tgry58e3gnr, identifier: DISTRICT_RUNNER)",
+    "LAMP_TOWER": "✓ Created achievement \"Knock on the Dead\" (id: md7ekmqcq0kqnx1kkgcw811fzh8e3wck, identifier: LAMP_TOWER)",
+    "WISH_GRANTED": "✓ Created achievement \"One Last Wish\" (id: md715fev2tveajya9tj8jagar58e20hp, identifier: WISH_GRANTED)"
+  }
+}

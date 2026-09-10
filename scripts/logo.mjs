@@ -1,0 +1,5 @@
+import fs from 'node:fs';
+const glyphs=JSON.parse(fs.readFileSync('art/font.json','utf8'));
+function lettering(text){let path='';for(const[i,ch]of[...text].entries())for(let y=0;y<7;y++)for(let x=0;x<5;x++)if(glyphs[ch][y]&(16>>x))path+=`M${i*6+x},${y}h1v1h-1z`;return path;}
+const svg=`<svg xmlns="http://www.w3.org/2000/svg" width="1040" height="280" viewBox="-2 -2 52 14" role="img" aria-label="Runicorn Zombie Apocalypse"><defs><path id="word" d="${lettering('RUNICORN')}"/><linearGradient id="face" x2="0" y2="1"><stop stop-color="#effff2"/><stop offset=".5" stop-color="#adffff"/><stop offset="1" stop-color="#7cceff"/></linearGradient></defs><use href="#word" fill="#101625" stroke="#101625" stroke-width=".8" transform="translate(.5 1.1)"/><use href="#word" fill="#cf67ed" transform="translate(.2 .8)"/><use href="#word" fill="#7977ff" transform="translate(0 .5)"/><use href="#word" fill="url(#face)"/><path d="${lettering('ZOMBIE APOCALYPSE')}" fill="#ff8fae" transform="translate(0 9) scale(.5)"/></svg>`;
+fs.writeFileSync('promo/logo.svg',svg);console.log('Pixel logo matches the original game alphabet.');

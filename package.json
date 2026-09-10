@@ -1,0 +1,34 @@
+{
+  "name": "runicorn-zombie-apocalypse",
+  "version": "1.5.0",
+  "private": true,
+  "type": "module",
+  "license": "MIT",
+  "scripts": {
+    "dev": "node scripts/serve.mjs",
+    "art": "python scripts/art.py && node scripts/pack-art.mjs",
+    "build": "node scripts/build.mjs",
+    "size": "node scripts/build.mjs --size",
+    "test": "node --test tests/core.test.mjs tests/audio.test.mjs tests/wavedash-progress.test.mjs",
+    "test:browser": "node tests/browser.mjs",
+    "font": "python scripts/font.py",
+    "build:wavedash": "node scripts/wavedash.mjs",
+    "test:story": "node tests/story-platform.mjs",
+    "test:menus": "node tests/menus.mjs",
+    "test:title": "node tests/title.mjs",
+    "test:wavedash": "node tests/wavedash-host.mjs",
+    "wavedash:icons": "node scripts/wavedash-icons.mjs",
+    "wavedash:provision": "node scripts/wavedash-provision.mjs",
+    "test:encore": "node tests/encore.mjs",
+    "record:encore": "node tests/record-encore.mjs"
+  },
+  "devDependencies": {
+    "@gfx/zopfli": "^1.0.15",
+    "esbuild": "^0.28.2",
+    "fflate": "^0.8.3",
+    "playwright": "^1.63.0",
+    "pngjs": "^7.0.0",
+    "roadroller": "^2.1.0",
+    "terser": "^5.51.2"
+  }
+}

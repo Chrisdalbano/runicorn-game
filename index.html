@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><link rel="icon" href="data:,"><title>RUNICORN</title><link rel="stylesheet" href="src/style.css"></head>
+<body><main id="app">
+  <canvas id="game" width="640" height="400" aria-label="Runicorn game arena"></canvas>
+  <header><button id="mute">SOUND ON</button><button id="pause" aria-label="Pause">PAUSE</button></header>
+  <section id="title" class="screen">
+    <h1>RUNICORN</h1><h2>ZOMBIE APOCALYPSE</h2>
+    <div class="titlemenu"><button id="start" class="primary">PRESS START</button>
+    <div class="how">WASD / ARROWS - STEER<br>SPACE - DASH<br>CROSS TRAIL - LOOP<br>CLICK FOR MUSIC</div></div>
+    <footer><span id="record">BEST 000000</span></footer>
+  </section>
+  <section id="hud" hidden><div><small>VITAL SIGNS</small><b id="health"></b></div><div class="stage"><small id="district"></small><b id="objective"></b></div><div class="score"><small>CHROMA</small><b id="score">000000</b></div></section>
+  <div id="bottom" hidden><span id="loadout">RAINBOW DASH / READY</span><span id="kit"></span><span id="clock"></span></div>
+  <div id="radio" hidden><b>ISAAC / LIVE</b><span></span></div>
+  <div id="toast" role="status"></div>
+  <section id="dialog" class="modal" hidden><div class="dialogbox"><div class="portrait"><canvas id="portrait" width="64" height="64"></canvas><span id="speaker"></span></div><div class="dialogcopy"><small id="channel"></small><p id="line"></p><button id="next">CONTINUE</button></div><button id="skip" class="skip">SKIP</button></div></section>
+  <section id="upgrade" class="modal" hidden><div class="upgradebox"><h3>WEAPON SELECT</h3><div id="cards"></div><small>ARROWS / ENTER</small></div></section>
+  <section id="end" class="modal" hidden><div class="endbox"><small id="endlabel"></small><h3 id="endtitle"></h3><p id="endreason"></p><strong id="endscore"></strong><div id="endstats"></div><button id="again" class="primary">CONTINUE</button><button id="home">TITLE</button></div></section>
+  <section id="paused" class="modal" hidden><div class="endbox"><h3>PAUSE</h3><button id="resume" class="primary">CONTINUE</button><button id="quit">TITLE</button></div></section>
+  <div id="touch" hidden><div id="stick"><i></i></div><button id="dash">DASH</button></div>
+</main><script type="module" src="src/game.js"></script></body></html>

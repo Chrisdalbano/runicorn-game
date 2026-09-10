@@ -1,0 +1,23 @@
+{
+  "generated": "2026-09-08",
+  "files": [
+    {
+      "file": "listing-320.png",
+      "format": "PNG",
+      "width": 320,
+      "height": 320,
+      "bytes": 62645,
+      "maxBytes": 64000,
+      "sha256": "109fff0af5e036ba7d4355777e718101a9fb7e6b67d78aff785dd3379486189c"
+    },
+    {
+      "file": "header-800.png",
+      "format": "PNG",
+      "width": 800,
+      "height": 500,
+      "bytes": 226001,
+      "maxBytes": 256000,
+      "sha256": "196b3d6e03551297a92d3f40dce41df93904eece16b06f721d6a4cac179d4856"
+    }
+  ]
+}

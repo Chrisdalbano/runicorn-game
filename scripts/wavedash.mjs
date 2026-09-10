@@ -1,0 +1,13 @@
+import fs from 'node:fs';
+import {build} from 'esbuild';
+import {zipSync,strToU8} from 'fflate';
+const dom=JSON.parse(fs.readFileSync('dist/dom.json'));
+const ids=['end','endscore','endstats','endlabel','paused'].map(key=>`document.getElementById('${dom[key]}')`).join(',');
+const entry=`import {attachWavedash} from './src/wavedash.js';attachWavedash(window.Wavedash,${ids});`;
+const result=await build({stdin:{contents:entry,resolveDir:process.cwd()},bundle:true,minify:true,write:false,format:'iife',target:'es2020'});
+const html=fs.readFileSync('dist/index.html','utf8')+'<script>'+result.outputFiles[0].text+'</script>';
+fs.mkdirSync('release/wavedash',{recursive:true});
+fs.writeFileSync('release/wavedash/index.html',html);
+const zip=zipSync({'index.html':[strToU8(html),{mtime:new Date(2026,7,13,12)}]},{level:9});
+fs.writeFileSync('release/wavedash-platform.zip',zip);
+console.log(`Wavedash platform archive: ${zip.length} bytes. Separate from the js13k submission.`);

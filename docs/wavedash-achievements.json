@@ -1,0 +1,66 @@
+[
+  {
+    "_id": "md73sx7a90xxnsyfyrrzdda1ks8e2026",
+    "identifier": "CHROMA_OVERDRIVE",
+    "displayName": "Chroma Overdrive",
+    "description": "Finish a run with at least 5000 Chroma.",
+    "image": "jd7atyzp1q129eykdxqcpjjeh985kww0/j970hj6zbxbbfjqw6b5bfyb9vs8e3sag/achievements/CHROMA_OVERDRIVE-1788920598551-5f99759d.webp",
+    "secret": false
+  },
+  {
+    "_id": "md79b02kgw5z9xjzpd2f6tgry58e3gnr",
+    "identifier": "DISTRICT_RUNNER",
+    "displayName": "The Last of Herd",
+    "description": "Reach district three and finish the run.",
+    "image": "jd7atyzp1q129eykdxqcpjjeh985kww0/j970hj6zbxbbfjqw6b5bfyb9vs8e3sag/achievements/DISTRICT_RUNNER-1788920599954-53e2189d.webp",
+    "secret": false
+  },
+  {
+    "_id": "md77z8csqhdx9ype32x7071x758e2rkh",
+    "identifier": "FIRST_LOOP",
+    "displayName": "Color Outside the Grave",
+    "description": "Finish a run with at least one closed rainbow loop.",
+    "image": "jd7atyzp1q129eykdxqcpjjeh985kww0/j970hj6zbxbbfjqw6b5bfyb9vs8e3sag/achievements/FIRST_LOOP-1788920588351-57f8b1b0.webp",
+    "secret": false
+  },
+  {
+    "_id": "md77t1cwcb1f5v9h6p30rv0zax8e27bj",
+    "identifier": "FIRST_PURIFICATION",
+    "displayName": "Still Magical",
+    "description": "Purify a zombie unicorn and finish the run.",
+    "image": "jd7atyzp1q129eykdxqcpjjeh985kww0/j970hj6zbxbbfjqw6b5bfyb9vs8e3sag/achievements/FIRST_PURIFICATION-1788920592761-59359984.webp",
+    "secret": false
+  },
+  {
+    "_id": "md7ek8g8x4xf670stmthf2rvwn8e3b0h",
+    "identifier": "HERD_CONTROL",
+    "displayName": "Herd Control",
+    "description": "Purify fifty zombie unicorns in one completed run.",
+    "image": "jd7atyzp1q129eykdxqcpjjeh985kww0/j970hj6zbxbbfjqw6b5bfyb9vs8e3sag/achievements/HERD_CONTROL-1788920595963-6c497095.webp",
+    "secret": false
+  },
+  {
+    "_id": "md7ekmqcq0kqnx1kkgcw811fzh8e3wck",
+    "identifier": "LAMP_TOWER",
+    "displayName": "Knock on the Dead",
+    "description": "Reach the final district and finish the run.",
+    "image": "jd7atyzp1q129eykdxqcpjjeh985kww0/j970hj6zbxbbfjqw6b5bfyb9vs8e3sag/achievements/LAMP_TOWER-1788920603525-6746eead.webp",
+    "secret": false
+  },
+  {
+    "_id": "md71a6qdgvbyrm500xkx2y6j118e222y",
+    "identifier": "LOOP_ARTIST",
+    "displayName": "Loop Artist",
+    "description": "Close ten rainbow loops in a single completed run.",
+    "image": "jd7atyzp1q129eykdxqcpjjeh985kww0/j970hj6zbxbbfjqw6b5bfyb9vs8e3sag/achievements/LOOP_ARTIST-1788920589604-189ee7c1.webp",
+    "secret": false
+  },
+  {
+    "_id": "md715fev2tveajya9tj8jagar58e20hp",
+    "identifier": "WISH_GRANTED",
+    "displayName": "One Last Wish",
+    "description": "Rescue Jacob and restore the world.",
+    "image": "jd7atyzp1q129eykdxqcpjjeh985kww0/j970hj6zbxbbfjqw6b5bfyb9vs8e3sag/achievements/WISH_GRANTED-1788920604576-35f5156b.webp",
+    "secret": false
+  }
+]

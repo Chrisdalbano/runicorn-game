@@ -1,0 +1,20 @@
+{
+  "modelRecipBaseCount": 16,
+  "numAbbreviations": 24,
+  "sparseSelectors": [
+    0,
+    1,
+    2,
+    3,
+    6,
+    7,
+    11,
+    13,
+    42,
+    113,
+    152,
+    353
+  ],
+  "precision": 14,
+  "recipLearningRate": 1333
+}

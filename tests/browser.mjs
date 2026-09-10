@@ -1,0 +1,42 @@
+import {chromium,firefox} from 'playwright';import assert from 'node:assert/strict';import fs from 'node:fs';
+import {pathToFileURL} from 'node:url';import path from 'node:path';import{execFileSync}from'node:child_process';
+fs.mkdirSync('test-results',{recursive:true});fs.mkdirSync('promo',{recursive:true});
+const dom=JSON.parse(fs.readFileSync('dist/dom.json'));const pid=id=>'#'+dom[id];
+execFileSync(process.execPath,['scripts/build.mjs','--verify']);
+const base='http://127.0.0.1:4173';const reports=[];
+for(const [name,engine] of [['chromium',chromium],['firefox',firefox]]){
+ const browser=await engine.launch();const page=await browser.newPage({viewport:{width:1280,height:800}});const errors=[];
+ page.on('pageerror',e=>errors.push(e.message));
+ page.on('console',m=>{if(m.type()==='error')errors.push(m.text());});
+ await page.goto(base);await page.waitForFunction(()=>window.__runicorn);await page.evaluate(()=>document.fonts.ready);
+ await page.screenshot({path:`test-results/${name}-title.png`});
+ await page.click('#start');await page.waitForTimeout(120);assert.equal(await page.evaluate(()=>__runicorn.snapshot().state),'dialog');
+ await page.screenshot({path:`test-results/${name}-dialog.png`});await page.click('#skip');
+ await page.evaluate(()=>__runicorn.set({p:{inv:100}}));
+ await page.keyboard.down('d');await page.waitForTimeout(300);await page.keyboard.up('d');
+ const before=await page.evaluate(()=>__runicorn.snapshot());assert.ok(before.clock>0);assert.ok(before.trailCount>0);
+ await page.keyboard.press('Space');const dashed=await page.evaluate(()=>__runicorn.snapshot());assert.ok(dashed.p.cool>0);assert.ok(dashed.p.dash>0);
+ await page.keyboard.press('p');assert.equal(await page.evaluate(()=>__runicorn.snapshot().state),'pause');const frozen=await page.evaluate(()=>__runicorn.snapshot().clock);await page.waitForTimeout(100);assert.equal(await page.evaluate(()=>__runicorn.snapshot().clock),frozen);await page.click('#resume');
+ await page.evaluate(()=>__runicorn.loop());assert.ok((await page.evaluate(()=>__runicorn.snapshot())).kills>=1);
+ await page.evaluate(()=>__runicorn.set({clock:46,p:{x:320,y:215,inv:100,dash:0}}));await page.evaluate(()=>__runicorn.tick(10));await page.waitForFunction(()=>__runicorn.snapshot().state==='upgrade');
+ assert.equal(await page.locator('#cards button').count(),3);assert.equal(await page.locator('#cards button>canvas:first-child').count(),3);assert.equal(await page.evaluate(()=>new Set([...document.querySelectorAll('#cards button>canvas:first-child')].map(c=>c.toDataURL())).size),3);await page.screenshot({path:`test-results/${name}-upgrades.png`});await page.keyboard.press('1');await page.click('#skip');assert.equal((await page.evaluate(()=>__runicorn.snapshot())).owned.gun,1);
+ await page.evaluate(()=>{__runicorn.set({p:{inv:100}});__runicorn.stress();});
+ await page.waitForTimeout(1800);await page.evaluate(()=>__runicorn.set({clock:13}));await page.waitForTimeout(100);assert.equal(await page.locator('#radio').isVisible(),true);assert.equal(await page.locator('#kit canvas[title=\"MEGACORN HAT\"]').count(),1);await page.screenshot({path:`test-results/${name}-gameplay.png`});
+ const timing=await page.evaluate(async()=>{const values=[];let t=performance.now();for(let i=0;i<120;i++){await new Promise(requestAnimationFrame);const n=performance.now();values.push(n-t);t=n;}values.sort((a,b)=>a-b);return{median:values[60],p95:values[114]};});
+ await page.evaluate(()=>{__runicorn.stage(4);__runicorn.skip();__runicorn.win();});assert.equal(await page.evaluate(()=>__runicorn.snapshot().state),'dialog');await page.click('#skip');assert.equal(await page.evaluate(()=>__runicorn.snapshot().state),'win');
+ await page.click('#again');await page.click('#skip');await page.evaluate(()=>__runicorn.die());assert.equal(await page.evaluate(()=>__runicorn.snapshot().state),'dying');await page.waitForFunction(()=>__runicorn.snapshot().state==='dead');assert.equal(await page.evaluate(()=>__runicorn.snapshot().state),'dead');await page.screenshot({path:`test-results/${name}-death.png`});await page.click('#again');assert.equal(await page.evaluate(()=>__runicorn.snapshot().state),'dialog');
+ assert.deepEqual(errors,[]);reports.push({browser:name,version:browser.version(),timing,errors});
+ // Production file: actual packed artifact, no hooks, no network dependencies.
+ const prod=await browser.newPage({viewport:{width:1280,height:800}});const prodErrors=[];prod.on('pageerror',e=>prodErrors.push(e.message));
+ await prod.goto(base+'/dist/index.html');await prod.waitForSelector(pid('start'));await prod.evaluate(()=>document.fonts.ready);assert.equal(await prod.evaluate(()=>document.fonts.check('12px Runicorn')),true);assert.equal(await prod.evaluate(()=>typeof window.__runicorn),'undefined');
+ await prod.context().setOffline(true);await prod.click(pid('start'));await prod.click(pid('skip'));await prod.keyboard.down('d');await prod.waitForTimeout(600);await prod.keyboard.up('d');await prod.click(pid('mute'));await prod.screenshot({path:`test-results/${name}-production.png`});assert.deepEqual(prodErrors,[]);
+ const file=await browser.newPage();file.on('pageerror',e=>prodErrors.push(e.message));await file.goto(pathToFileURL(path.resolve('dist/index.html')).href);await file.click(pid('start'));await file.click(pid('skip'));await file.waitForTimeout(100);assert.deepEqual(prodErrors,[]);
+ const probe=await browser.newPage();probe.on('pageerror',e=>prodErrors.push(e.message));await probe.goto(base+'/test-results/packed-probe.html');await probe.click(pid('start'));const verified=await probe.evaluate(()=>window.__verify());assert.equal(verified[0],true);assert.equal(verified[1],2);assert.ok(verified[2]>2.7&&verified[2]<2.8);assert.ok(verified[3]>.32);assert.equal(verified[4],2);assert.equal(verified[5],1);assert.deepEqual(prodErrors,[]);
+ await browser.close();
+}
+const browser=await chromium.launch();const phone=await browser.newPage({viewport:{width:390,height:844},isMobile:true,hasTouch:true,deviceScaleFactor:1});const errors=[];phone.on('pageerror',e=>errors.push(e.message));
+await phone.addInitScript(()=>{Object.defineProperty(window,'localStorage',{get(){throw Error('storage denied');}});});
+await phone.goto(base);await phone.click('#start');await phone.click('#skip');await phone.evaluate(()=>__runicorn.set({p:{inv:100}}));
+assert.equal(await phone.locator('#touch').isVisible(),true);await phone.locator('#dash').tap();assert.ok((await phone.evaluate(()=>__runicorn.snapshot())).p.cool>0);
+await phone.screenshot({path:'test-results/mobile-portrait.png'});await phone.evaluate(()=>{__runicorn.set({clock:46,p:{x:320,y:215}});__runicorn.tick(20);});await phone.waitForFunction(()=>__runicorn.snapshot().state==='upgrade');await phone.screenshot({path:'test-results/mobile-upgrades.png'});for(const box of await phone.locator('#cards button').all()){const r=await box.boundingBox();assert.ok(r.x>=0&&r.y>=0&&r.x+r.width<=390&&r.y+r.height<=844);}await phone.locator('#cards button').first().tap();await phone.click('#skip');await phone.setViewportSize({width:844,height:390});await phone.screenshot({path:'test-results/mobile-landscape.png'});assert.deepEqual(errors,[]);await browser.close();
+fs.writeFileSync('test-results/report.json',JSON.stringify(reports,null,2));console.log(JSON.stringify(reports,null,2));console.log('Browser flows, packed offline build, and mobile/storage-denied checks passed.');
